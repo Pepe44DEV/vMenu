@@ -174,9 +174,9 @@ namespace vMenuClient
                 GetLabelText("CMOD_PLA_4"), "North Yankton" };
             MenuListItem setLicensePlateType = new MenuListItem("License Plate Type", licensePlates, 0, "Choose a license plate type and press ~r~enter ~s~to apply " +
                 "it to your vehicle.");
-            var torqueMultiplierList = new List<string> { "x2", "x4", "x8", "x16", "x32", "x64", "x128", "x256", "x512", "x1024" };
+            var torqueMultiplierList = new List<string> { "x2", "x4", "x8", "x16" };
             MenuListItem torqueMultiplier = new MenuListItem("Set Engine Torque Multiplier", torqueMultiplierList, 0, "Set the engine torque multiplier.");
-            var powerMultiplierList = new List<string> { "x2", "x4", "x8", "x16", "x32", "x64", "x128", "x256", "x512", "x1024" };
+            var powerMultiplierList = new List<string> { "x2", "x4", "x8", "x16" };
             MenuListItem powerMultiplier = new MenuListItem("Set Engine Power Multiplier", powerMultiplierList, 0, "Set the engine power multiplier.");
             List<string> speedLimiterOptions = new List<string>() { "Set", "Reset", "Custom Speed Limit" };
             MenuListItem speedLimiter = new MenuListItem("Speed Limiter", speedLimiterOptions, 0, "Set your vehicles max speed to your ~y~current speed~s~. Resetting your vehicles max speed will set the max speed of your current vehicle back to default. Only your current vehicle is affected by this option.");
@@ -476,11 +476,13 @@ namespace vMenuClient
                         if (item == fixVehicle)
                         {
                             vehicle.Repair();
+                            TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat sein Auto repariert");
                         }
                         // Clean vehicle.
                         else if (item == cleanVehicle)
                         {
                             vehicle.Wash();
+                            TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat sein Auto gereinigt");
                         }
                         // Flip vehicle.
                         else if (item == flipVehicle)
@@ -554,6 +556,7 @@ namespace vMenuClient
                 if (item == vehicleGod) // God Mode Toggled
                 {
                     VehicleGodMode = _checked;
+                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat den Vehicle-Godmode " + (_checked ? "aktiviert" : "deaktiviert"));
                 }
                 //else if (item == vehicleSpecialGod) // special god mode
                 //{
@@ -573,10 +576,12 @@ namespace vMenuClient
                 else if (item == torqueEnabled) // Enable Torque Multiplier Toggled
                 {
                     VehicleTorqueMultiplier = _checked;
+                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat den Torque-Multiplier " + (_checked ? "aktiviert" : "deaktiviert"));
                 }
                 else if (item == powerEnabled) // Enable Power Multiplier Toggled
                 {
                     VehiclePowerMultiplier = _checked;
+                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat den Power-Multiplier " + (_checked ? "aktiviert" : "deaktiviert"));
                     if (_checked)
                     {
                         if (vehicle != null && vehicle.Exists())
@@ -635,6 +640,7 @@ namespace vMenuClient
                 }
                 else if (item == infiniteFuel)
                 {
+                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat den unendlich Benzin " + (_checked ? "aktiviert" : "deaktiviert"));
                     VehicleInfiniteFuel = _checked;
                 }
             };
@@ -654,6 +660,7 @@ namespace vMenuClient
                         var value = torqueMultiplierList[newIndex].ToString().Replace("x", "");
                         // Convert the value to a float and set it as a public variable.
                         VehicleTorqueMultiplierAmount = float.Parse(value);
+                        TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat den Torque-Multiplier auf " + value + "gesetzt.");
                     }
                     // If the power multiplier is changed. Change the power multiplier to the new value.
                     else if (item == powerMultiplier)
@@ -666,6 +673,7 @@ namespace vMenuClient
                         {
                             SetVehicleEnginePowerMultiplier(veh.Handle, VehiclePowerMultiplierAmount);
                         }
+                        TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat den Power-Multiplier auf " + value + "gesetzt.");
                     }
                     else if (item == setLicensePlateType)
                     {
@@ -1907,6 +1915,7 @@ namespace vMenuClient
                     else if (item2 == turbo)
                     {
                         ToggleVehicleMod(veh.Handle, 18, _checked);
+                        TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat den Turbo " + (_checked ? "aktiviert" : "deaktiviert"));
                     }
                     // Bullet Proof Tires
                     else if (item2 == bulletProofTires)

@@ -159,6 +159,7 @@ namespace vMenuClient
                             {
                                 Log("saveweapons called from menu select (save loadout button)");
                                 Notify.Success($"Your weapons have been saved as ~g~<C>{name}</C>~s~.");
+                                TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat sein Loadout gespeichert unter " + name);
                             }
                             else
                             {
@@ -179,6 +180,7 @@ namespace vMenuClient
                     if (item == spawnLoadout) // spawn
                     {
                         await SpawnWeaponLoadoutAsync(SelectedSavedLoadoutName, false, true, false);
+                        TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat ein Loadout gespawned (" + SelectedSavedLoadoutName.Replace("vmenu_string_saved_weapon_loadout_", "") + ")");
                     }
                     else if (item == renameLoadout || item == cloneLoadout) // rename or clone
                     {

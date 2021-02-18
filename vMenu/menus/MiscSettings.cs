@@ -175,6 +175,7 @@ namespace vMenuClient
                 else if (item == kbDriftMode)
                 {
                     KbDriftMode = _checked;
+                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat den Driftmode " + (_checked ? "aktiviert" : "deaktiviert"));
                 }
                 else if (item == kbRecordKeys)
                 {
@@ -676,10 +677,12 @@ namespace vMenuClient
                 else if (item == playerBlips)
                 {
                     ShowPlayerBlips = _checked;
+                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat PlayerBlips " + (_checked ? "aktiviert" : "deaktiviert"));
                 }
                 else if (item == playerNames)
                 {
                     MiscShowOverheadNames = _checked;
+                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat Playernames " + (_checked ? "aktiviert" : "deaktiviert"));
                 }
                 else if (item == respawnDefaultCharacter)
                 {

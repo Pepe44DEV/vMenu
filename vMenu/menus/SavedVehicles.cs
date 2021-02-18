@@ -116,10 +116,12 @@ namespace vMenuClient
                     if (MainMenu.VehicleSpawnerMenu != null)
                     {
                         SpawnVehicle(currentlySelectedVehicle.Value.model, MainMenu.VehicleSpawnerMenu.SpawnInVehicle, MainMenu.VehicleSpawnerMenu.ReplaceVehicle, false, vehicleInfo: currentlySelectedVehicle.Value, saveName: currentlySelectedVehicle.Key.Substring(4));
+                        TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " spawnt ein Fahrzeug (" + currentlySelectedVehicle.Value.model + ")");
                     }
                     else
                     {
                         SpawnVehicle(currentlySelectedVehicle.Value.model, true, true, false, vehicleInfo: currentlySelectedVehicle.Value, saveName: currentlySelectedVehicle.Key.Substring(4));
+                        TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " spawnt ein Fahrzeug (" + currentlySelectedVehicle.Value.model + ")");
                     }
                 }
                 else if (item == renameVehicle)

@@ -152,6 +152,7 @@ namespace vMenuClient
                 else if (item == kill)
                 {
                     KillPlayer(currentPlayer);
+                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat die Kill-Funktion auf " + currentPlayer.Name + " angewendet.");
                 }
                 // manage the gps route being clicked.
                 else if (item == toggleGPS)
@@ -224,7 +225,10 @@ namespace vMenuClient
                 else if (item == kick)
                 {
                     if (currentPlayer.Handle != Game.Player.Handle)
+                    {
                         KickPlayer(currentPlayer, true);
+                        TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat " + currentPlayer.Name + " gekickt.");
+                    }
                     else
                         Notify.Error("You cannot kick yourself!");
                 }
@@ -242,6 +246,7 @@ namespace vMenuClient
                         _ = UpdatePlayerlist();
                         playerMenu.GoBack();
                         BanPlayer(currentPlayer, true);
+                        TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat  " + currentPlayer.Name + " gebannt. (vMenu)");
                     }
                     else
                     {
