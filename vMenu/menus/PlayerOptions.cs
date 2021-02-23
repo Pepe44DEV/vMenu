@@ -331,14 +331,14 @@ namespace vMenuClient
                 if (item == playerGodModeCheckbox)
                 {
                     PlayerGodMode = _checked;
-                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat den Godmode " + (_checked ? "aktiviert" : "deaktiviert"));
+                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(PlayerId()) + " hat den Godmode " + (_checked ? "aktiviert" : "deaktiviert"));
                 }
                 // Invisibility toggled.
                 else if (item == invisibleCheckbox)
                 {
                     PlayerInvisible = _checked;
                     SetEntityVisible(Game.PlayerPed.Handle, !PlayerInvisible, false);
-                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat den Unsichtbarkeit " + (_checked ? "aktiviert" : "deaktiviert"));
+                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(PlayerId()) + " hat den Unsichtbarkeit " + (_checked ? "aktiviert" : "deaktiviert"));
                 }
                 // Unlimited Stamina toggled.
                 else if (item == unlimitedStaminaCheckbox)
@@ -362,7 +362,7 @@ namespace vMenuClient
                 else if (item == superJumpCheckbox)
                 {
                     PlayerSuperJump = _checked;
-                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat SuperJump " + (_checked ? "aktiviert" : "deaktiviert"));
+                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(PlayerId()) + " hat SuperJump " + (_checked ? "aktiviert" : "deaktiviert"));
                 }
                 // No ragdoll toggled.
                 else if (item == noRagdollCheckbox)
@@ -446,7 +446,7 @@ namespace vMenuClient
                 {
                     Game.PlayerPed.Health = Game.PlayerPed.MaxHealth;
                     Notify.Success("Player healed.");
-                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat sich geheilt");
+                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(PlayerId()) + " hat sich geheilt");
                 }
                 else if (item == cleanPlayerBtn)
                 {
@@ -466,7 +466,7 @@ namespace vMenuClient
                 else if (item == suicidePlayerBtn)
                 {
                     CommitSuicide();
-                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat suizid begangen");
+                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(PlayerId()) + " hat suizid begangen");
                 }
             };
             #endregion

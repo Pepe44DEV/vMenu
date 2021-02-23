@@ -460,7 +460,7 @@ namespace vMenuClient
                             {
                                 TaskWarpPedIntoVehicle(Game.PlayerPed.Handle, vehicle.Handle, (int)VehicleSeat.Any);
                                 Notify.Success("Teleported into ~g~<C>" + GetPlayerName(playerId) + "</C>'s ~s~vehicle.");
-                                TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " teleportiert sich in " + GetPlayerName(playerId) + " Auto");
+                                TriggerServerEvent("tallerik:logMessage", GetPlayerName(PlayerId()) + " teleportiert sich in " + GetPlayerName(playerId) + " Auto");
                             }
                             // If there are not enough empty vehicle seats or the vehicle doesn't exist/is dead then notify the user.
                             else
@@ -484,7 +484,7 @@ namespace vMenuClient
                 else
                 {
                     Notify.Success("Teleported to ~y~<C>" + GetPlayerName(playerId) + "</C>~s~.");
-                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " teleportiert sich zu " + GetPlayerName(playerId));
+                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(PlayerId()) + " teleportiert sich zu " + GetPlayerName(playerId));
                 }
             }
             // The specified playerId does not exist, notify the user of the error.
@@ -713,7 +713,7 @@ namespace vMenuClient
             {
                 var pos = World.WaypointPosition;
                 await TeleportToCoords(pos);
-                TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " teleportiert sich zu seinem Wegpunkt");
+                TriggerServerEvent("tallerik:logMessage", GetPlayerName(PlayerId()) + " teleportiert sich zu seinem Wegpunkt");
             }
             else
             {
@@ -1124,7 +1124,7 @@ namespace vMenuClient
                     uint model = (uint)GetHashKey(result);
                     SpawnVehicle(vehicleHash: model, spawnInside: spawnInside, replacePrevious: replacePrevious, skipLoad: false, vehicleInfo: new VehicleInfo(),
                         saveName: null);
-                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " spawnt ein Fahrzeug (" + result + ")");
+                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(PlayerId()) + " spawnt ein Fahrzeug (" + result + ")");
                 }
                 // Result was invalid.
                 else
@@ -1137,7 +1137,7 @@ namespace vMenuClient
             {
                 SpawnVehicle(vehicleHash: (uint)GetHashKey(vehicleName), spawnInside: spawnInside, replacePrevious: replacePrevious, skipLoad: false,
                     vehicleInfo: new VehicleInfo(), saveName: null);
-                TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " spawnt ein Fahrzeug (" + vehicleName + ")");
+                TriggerServerEvent("tallerik:logMessage", GetPlayerName(PlayerId()) + " spawnt ein Fahrzeug (" + vehicleName + ")");
             }
         }
         #endregion

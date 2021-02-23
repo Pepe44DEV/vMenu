@@ -127,7 +127,7 @@ namespace vMenuClient
                 if (index >= 2 && index <= 16)
                 {
                     Notify.Custom($"The weather will be changed to ~y~{item.Text}~s~. This will take {EventManager.WeatherChangeTime} seconds.");
-                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(-1) + " hat das Wetter zu " + item.Text + " gesetzt");
+                    TriggerServerEvent("tallerik:logMessage", GetPlayerName(PlayerId()) + " hat das Wetter zu " + item.Text + " gesetzt");
                     UpdateServerWeather(weatherTypes[index - 2], EventManager.IsBlackoutEnabled, EventManager.DynamicWeatherEnabled);
                 }
                 if (item == removeclouds)
